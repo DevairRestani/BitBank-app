@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ecf0f1;
+}
+
+.container-pessoa {
+    display: flex;
+    height: auto;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 2% 0 0 0 ;
+}
+
+
+.content {
+    background-color: #fff;
+    border-radius: 15px;
+    width: 960px;
+    height: 50%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.content::before {
+    content: "";
+    position: absolute;
+    background-color: #58af9b;
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+
+    left: 0;
+}
+
+.descricao {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 30px;
+}
+.descricao-primaria {
+    color: #fff;
+}
+.descricao-secundaria {
+    color: #7f8c8d;
+}
+
+/* segundo content */
+
+.segundo-content {
+    position: absolute;
+    display: flex;
+}
+.segundo-content .primeira-coluna {
+    order: 2;
+    z-index: -1;
+}
+.segundo-content .segunda-coluna {
+    order: 1;
+    z-index: -1;
+}
+.password {
+    color: #34495e;
+    font-size: 14px;
+    margin: 15px 0;
+    text-align: center;
+}
+.password::first-letter {
+    text-transform: capitalize;
+}
+
+.painel-cliente{
+    width: 50%;
+    margin-left:25%; 
+    background-color:#58af9b;
+}
+
+
+.entrar-js .primeiro-content .primeira-coluna {
+    z-index: -1;
+}
+
+.entrar-js .segundo-content .segunda-coluna {
+    z-index: 11;
+}
+.entrar-js .segundo-content .primeira-coluna {
+    z-index: 13;
+}
+
+.entrar-js .content::before {
+    left: 60%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    animation: slidein 1.3s;
+
+    z-index: 12;
+}
+
+.cadastrar-js .content::before {
+    animation: slideout 1.3s;
+
+    z-index: 12;
+}
+
+.cadastrar-js .segundo-content .primeira-coluna,
+.cadastrar-js .segundo-content .segunda-coluna {
+    z-index: -1;
+}
+
+.cadastrar-js .primeiro-content .segunda-coluna {
+    z-index: 11;
+}
+
+.cadastrar-js .primeiro-content .primeira-coluna {
+    z-index: 13;    
+}
+
+
+/* DESLOCAMENTO CONTEÚDO ATRÁS DO CONTENT:BEFORE*/
+.entrar-js .primeiro-content .segunda-coluna {
+
+    z-index: -1;
+    position: relative;
+    animation: deslocamentoEsq 1.3s; 
+}
+
+.cadastrar-js .segundo-content .segunda-coluna {
+    position: relative;
+    z-index: -1;
+    animation: deslocamentoDir 1.3s; 
+}
+
+/*ANIMAÇÃOO CSS PARA O CONTEÚDO*/
+
+@keyframes deslocamentoEsq {
+
+    from {
+        left: 0;
+        opacity: 1;
+        z-index: 12;
+    }
+
+    25% {
+        left: -80px;
+        opacity: .5;
+    }
+
+    50% {
+        left: -100px;
+        opacity: .2;
+    }
+
+    to {
+        left: -110px;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+
+@keyframes deslocamentoDir {
+
+    from {
+        left: 0;
+        z-index: 12;
+    }
+
+    25% {
+        left: 80px;
+    }
+
+    50% {
+        left: 100px;
+    }
+
+    to {
+        left: 110px;
+        z-index: -1;
+    }
+}
+
+
+/*ANIMAÇÃO CSS*/
+
+@keyframes slidein {
+
+    from {
+        left: 0;
+        width: 40%;
+    }
+
+    25% {
+        left: 5%;
+        width: 50%;
+    }
+
+    50% {
+        left: 25%;
+        width: 60%;
+    }
+
+    75% {
+        left: 45%;
+        width: 50%;
+    }
+
+    to {
+        left: 60%;
+        width: 40%;
+    }
+}
+
+@keyframes slideout {
+
+    from {
+        left: 60%;
+        width: 40%;
+    }
+
+    25% {
+        left: 45%;
+        width: 50%;
+    }
+
+    50% {
+        left: 25%;
+        width: 60%;
+    }
+
+    75% {
+        left: 5%;
+        width: 50%;
+    }
+
+    to {
+        left: 0;
+        width: 40%;
+    }
+}
