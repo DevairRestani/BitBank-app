@@ -17,6 +17,24 @@ body {
     background-color: #ecf0f1;
 }
 
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+td, th {
+border: 1px solid #58af9b;
+text-align: left;
+padding: 8px;
+}
+  
+tr:nth-child(even) {
+background-color: #58af9b;
+color: #fff;
+}
+
+
 .container-pessoa {
     display: flex;
     height: auto;
@@ -44,8 +62,25 @@ body {
     height: 100%;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
+    left: 0;
+}
 
-
+.content-full {
+    background-color: #fff;
+    border-radius: 15px;
+    width: 960px;
+    height: 50%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.content-full::before {
+    position: absolute;
+    background-color: #58af9b;
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
     left: 0;
 }
 
