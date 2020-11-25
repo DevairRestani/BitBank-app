@@ -50,6 +50,21 @@
     border: 1px solid #58af9b;
     color: #58af9b;
 }
+
+.full-content {
+    display: flex;
+
+}
+.full-content .full-coluna {
+    z-index: 11;
+}
+
+.full-coluna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .primeiro-content {
     display: flex;
 
