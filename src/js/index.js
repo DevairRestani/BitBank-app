@@ -19,7 +19,17 @@ const cadastrar = () => {
   };
   const acesso = true;
   const tipo = "";
-  const data = { nome, documento, email, telefone, tipoPessoa, senha, moedas, acesso, tipo };
+  const data = {
+    nome,
+    documento,
+    email,
+    telefone,
+    tipoPessoa,
+    senha,
+    moedas,
+    acesso,
+    tipo,
+  };
 
   $.ajax({
     url: "http://localhost:3333/usuarios/cadastrar",
@@ -27,21 +37,33 @@ const cadastrar = () => {
     contentType: "application/json",
     dataType: "json",
     data: JSON.stringify(data),
-    complete: function(xhr, textStatus) {
-        if(xhr.status === 400){
-            window.location = "/src/telas/ClienteBitbank.html"
-        }
+    complete: function (xhr, textStatus) {
+      if (xhr.status === 400) {
+        window.alert("Erro ao salvar realizar o cadastro");
+        window.alert(textStatus);
+      }
     },
-    success: function(data, textStatus, xhr) {
-        console.log(xhr.status);
-        console.log(data);
+    success: function (data, textStatus, xhr) {
+      console.log(data);
+
+      if (xhr.status === 201) {
+        window.alert("Cadastro realizado com sucesso.");
+
+        $("#nome").val("");
+        $("#documento").val("");
+        $("#email").val("");
+        $("#telefone").val("");
+        $("#senha").val("");
+
+        $("#entrar").click();
+      }
     },
-  })
+  });
 };
 
 const login = () => {
-  const email = $("#email").val();
-  const senha = $("#senha").val();
+  const email = $("#emailLogin").val();
+  const senha = $("#senhaLogin").val();
   const data = { email, senha };
 
   $.ajax({
@@ -50,14 +72,36 @@ const login = () => {
     contentType: "application/json",
     dataType: "json",
     data: JSON.stringify(data),
-    complete: function(xhr, textStatus) {
-        if(xhr.status === 400){
-            window.location = "/src/telas/ClienteBitbank.html"
+    complete: function (xhr, textStatus) {
+      if (xhr.status === 400) {
+        window.alert("Erro ao realizar o login");
+      }
+    },
+    success: function (data, textStatus, xhr) {
+      if(xhr.status === 202){
+        console.log(data);
+        if(!data.usuario.id){
+          window.alert("Ocorreu um erro ao realizar o login");
+          return;
         }
+        setCookie("id", data.usuario.id, 1/24);
+        window.location = "/src/telas/ClienteBitbank.html";
+      }
     },
-    success: function(data, textStatus, xhr) {
-        console.log(xhr.status);
-        console.log(data.tipo = "usr");
-    },
-  })
+  });
 };
+
+$(document).ready(function () {
+  $("#documento").mask("000.000.000-00");
+  $("#telefone").mask("(00) 00000-0000");
+  $("#email").mask("A", {
+    translation: {
+      A: { pattern: /[\w@\-.+]/, recursive: true },
+    },
+  });
+  $("#emailLogin").mask("A", {
+    translation: {
+      A: { pattern: /[\w@\-.+]/, recursive: true },
+    },
+  });
+});
