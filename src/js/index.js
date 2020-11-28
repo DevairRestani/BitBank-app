@@ -32,7 +32,7 @@ const cadastrar = () => {
   };
 
   $.ajax({
-    url: "http://131.221.189.3:3333/usuarios/cadastrar",
+    url: "http://localhost:3333/usuarios/cadastrar",
     type: "POST",
     contentType: "application/json",
     dataType: "json",
@@ -86,45 +86,15 @@ const login = () => {
           return;
         }
         setCookie("id", data.usuario.id, 1/24);
-        window.location = "/src/telas/ClienteBitbank.html";
+
+        if(data.usuario.tipo === "usr"){
+          window.location = "/src/telas/ClienteBitbank.html";
+        }else{
+          window.location = "/src/telas/AdministradorBitbank.html";
+        }
       }
     },
   });
-};
-
-
-
-const atualizarAdministrador = () => {
-    const nome = $("#nome").val();
-    const documento = $("#documento").val();
-    const email = $("#email").val();
-    const telefone = $("#telefone").val();
-    const tipoPessoa = $("input[name='tipoPessoa']:checked").val();
-    const senha = $("#senha").val();
-
-    const acesso = true;
-    const tipo = "";
-    const data = { nome, documento, email, telefone, tipoPessoa, senha, acesso, tipo };
-  
-    $.ajax({
-      url: "http://131.221.189.3:3333/usuarios/atualizarAdministrador",
-      type: "POST",
-      contentType: "application/json",
-      dataType: "json",
-      data: JSON.stringify(data),
-      complete: function(xhr, textStatus) {
-          if(xhr.status === 400){
-            console.log(xhr.status);
-          }
-      },
-      success: function(data, textStatus, xhr) {
-          console.log(xhr.status);
-          console.log(data);
-          if(xhr.status === 202){
-            console.log("Informações atualizadas")
-        }
-      },
-    })
 };
 
 $(document).ready(function () {

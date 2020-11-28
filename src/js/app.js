@@ -33,3 +33,9 @@ function getCookie(cname) {
   }
   return "";
 }
+
+function deleteCookie(cname) {
+  if (getCookie(cname)) {
+         document.cookie = cname + "=" + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+  }
+}

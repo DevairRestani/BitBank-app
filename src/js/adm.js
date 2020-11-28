@@ -11,7 +11,7 @@ $(document).ready(function(){
     const data = { id };
 
     $.ajax({
-      url: "http://localhost:3333/usuario/recuperarCliente",
+      url: "http://localhost:3333/usuario/recuperarAdmin",
       type: "POST",
       contentType: "application/json",
       dataType: "json",
@@ -30,50 +30,27 @@ $(document).ready(function(){
             $("#documento").val(data.documento);
             $("#email").val(data.email);
             $("#telefone").val(data.telefone);
-
-            document.querySelector("#bitcoin").checked = data.moedas.bch
-            document.querySelector("#eth").checked = data.moedas.eth
-            document.querySelector("#usdt").checked = data.moedas.usdt
-            document.querySelector("#xrp").checked = data.moedas.xrp
-            document.querySelector("#bch").checked = data.moedas.bch
-            document.querySelector("#link").checked = data.moedas.link
-            document.querySelector("#bnb").checked = data.moedas.bnb
-            document.querySelector("#ltc").checked = data.moedas.ltc
-            document.querySelector("#dot").checked = data.moedas.dot
-            document.querySelector("#bsv").checked = data.moedas.bsv
         }
       }
     })
 })
 
-const atualizarCliente = () => {
+const atualizarAdmin = () => {
     const nome = $("#nome").val();
     const documento = $("#documento").val();
     const email = $("#email").val();
     const telefone = $("#telefone").val();
     const tipoPessoa = $("input[name='tipoPessoa']:checked").val();
     const senha = $("#senha").val();
-    const moedas = {
-      btc: document.querySelector("#bitcoin").checked,
-      eth: document.querySelector("#eth").checked,
-      usdt: document.querySelector("#usdt").checked,
-      xrp: document.querySelector("#xrp").checked,
-      bch: document.querySelector("#bch").checked,
-      link: document.querySelector("#link").checked,
-      bnb: document.querySelector("#bnb").checked,
-      ltc: document.querySelector("#ltc").checked,
-      dot: document.querySelector("#dot").checked,
-      bsv: document.querySelector("#bsv").checked,
-    };
     const acesso = true;
     const tipo = "";
     const id = getCookie("id");
-    const data = { id, nome, documento, email, telefone, tipoPessoa, senha, moedas, acesso, tipo };
+    const data = { id, nome, documento, email, telefone, tipoPessoa, senha, acesso, tipo };
   
     $.ajax({
-      url: "http://localhost:3333/usuario/atualizarCliente",
+      url: "http://localhost:3333/usuario/atualizarAdmin",
       type: "POST",
-      contentType: "application/json",  
+      contentType: "application/json",
       dataType: "json",
       data: JSON.stringify(data),
       complete: function(xhr, textStatus) {
@@ -89,13 +66,13 @@ const atualizarCliente = () => {
     })
 };
 
-const sairCliente = () => {
+const sairAdmin = () => {
 
   const id = getCookie("id");
   const data = { id };
 
   $.ajax({
-    url: "http://localhost:3333/usuario/sairCliente",
+    url: "http://localhost:3333/usuario/sairAdmin",
     type: "POST",
     contentType: "application/json",
     dataType: "json",
